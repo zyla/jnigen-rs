@@ -1,0 +1,11 @@
+[package]
+name = "jni"
+version = "0.1.0"
+authors = ["Maciej Bielecki <zyla@prati.pl>"]
+
+[lib]
+name = "foo"
+crate_type = ["dylib"]
+
+[dependencies]
+jni-sys = "0.1.0"

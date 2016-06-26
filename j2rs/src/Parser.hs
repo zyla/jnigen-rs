@@ -47,4 +47,4 @@ member = Member
     parameters = parens (type_ `sepBy` comma)
 
 
-file = whiteSpace *> class_ <* eof
+file = whiteSpace *> many class_ <* eof
