@@ -1,5 +1,6 @@
 - string wrapping (not automatic)
 - constructors
+- upcasts
 - Swing example
 - static methods
 - fields

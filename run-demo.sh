@@ -2,6 +2,8 @@
 
 set -e
 
+cd $(dirname $0)
+
 (cd j2rs && stack build)
 (cd j2rs && stack exec j2rs) < java.txt > src/java.rs
 
