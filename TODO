@@ -1,7 +1,7 @@
 - string wrapping (not automatic)
-- constructors
 - upcasts
 - Swing example
 - static methods
 - fields
 - Android example
+- proper namespaces
