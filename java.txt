@@ -1,6 +1,4 @@
-class X {
-  public X(int);
-  void add(X);
-  X copy();
-  void print();
+public class javax.swing.JFrame {
+  public javax.swing.JFrame();
+  public void setVisible(boolean);
 }

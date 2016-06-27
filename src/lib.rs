@@ -2,7 +2,7 @@ extern crate jni_sys;
 use jni_sys::*;
 
 mod java;
-use java::X;
+use java::*;
 
 #[allow(non_snake_case)]
 #[no_mangle]
@@ -17,11 +17,7 @@ pub unsafe fn Java_main_main(env: *mut JNIEnv, cls: jclass) {
 }
 
 unsafe fn real_main(env: *mut JNIEnv) {
-    let x = X::new(env, 1);
+    let frame = javax_swing_JFrame::new(env);
 
-    x.print(); // 1
-
-    x.add(&X::new(env, 5));
-
-    x.print(); // 6
+    frame.setVisible(1);
 }

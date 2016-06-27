@@ -8,7 +8,7 @@ import Control.Monad.Writer
 
 genRust :: [Class] -> String
 genRust classes = execWriter $ do
-    tell $ "extern crate jni_sys; use jni_sys::*;\n"
+    tell $ "extern crate jni_sys; use jni_sys::*; extern crate libc; use self::libc::c_uint;\n"
 
     let member Member{..} =
           case memberGuts of
@@ -94,6 +94,7 @@ envCallFuncName ["void"] = "CallVoidMethod"
 envCallFuncName ["boolean"] = "CallBooleanMethod"
 envCallFuncName t = "CallObjectMethod"
 
+unwrap ["boolean"] expr = expr ++ " as c_uint"
 unwrap type_ expr
     | isPrimitive type_ = expr
     | otherwise = -- object wrapper
@@ -120,6 +121,7 @@ retTypeRs t
 
 typeRs ["long"] = "jlong"
 typeRs ["int"] = "jint"
+typeRs ["boolean"] = "jboolean"
 typeRs t = "&" ++ qnameRs t
 
 paramRs (index, type_) = "p" ++ show index ++ ": " ++ typeRs type_
