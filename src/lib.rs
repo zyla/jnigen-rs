@@ -2,7 +2,6 @@ extern crate jni_sys;
 use jni_sys::*;
 
 mod java;
-
 use java::X;
 
 #[allow(non_snake_case)]
@@ -13,18 +12,16 @@ pub unsafe fn Java_main_nativeInit(env: *mut JNIEnv) {
 
 #[allow(non_snake_case)]
 #[no_mangle]
-pub unsafe fn Java_main_go(env: *mut JNIEnv, cls: jclass, x_: jobject) {
-    let x = X::wrap(env, x_);
+pub unsafe fn Java_main_main(env: *mut JNIEnv, cls: jclass) {
+    real_main(env);
+}
+
+unsafe fn real_main(env: *mut JNIEnv) {
+    let x = X::new(env, 1);
 
     x.print(); // 1
 
-    x.add(&x);
+    x.add(&X::new(env, 5));
 
-    x.print(); // 2
-
-    let y = x.copy();
-
-    x.add(&y);
-    x.print(); // 4
-    y.print(); // 2
+    x.print(); // 6
 }

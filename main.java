@@ -6,9 +6,5 @@ class main {
 
     public static native void nativeInit();
 
-    public static native void go(X x);
-
-    public static void main(String[] args) {
-        go(new X(1));
-    }
+    public static native void main(String[] args);
 }
